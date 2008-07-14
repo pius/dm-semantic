@@ -16,6 +16,11 @@ describe DataMapper::Semantic, '#to_owl' do
 
     @empty_collection = DataMapper::Collection.new(query) {}
   end
+  
+  it "should return an RDF Graph" do
+    owl = BoringThing.to_owl
+    owl.class.should == Graph
+  end
 
   it "should export the class definition to an OWL ontology"
 

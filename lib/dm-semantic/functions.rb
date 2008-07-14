@@ -51,7 +51,7 @@ module DataMapper
           for property in properties
             g << Triple.new(BNode.new('john'), foaf.knows, BNode.new('jane'))
           end
-          return g.to_ntriples   
+          return g
         end
         
         ## 

@@ -10,6 +10,3 @@ dir = Pathname(__FILE__).dirname.expand_path / 'dm-semantic'
 
 require dir / 'functions'
 require dir / 'model'
-# require dir / 'repository'
-# require dir / 'collection'
-# require dir / 'adapters' / 'data_objects_adapter'
