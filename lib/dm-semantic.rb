@@ -3,7 +3,7 @@ require 'rubygems'
 gem 'dm-core', '=0.9.3'
 require 'dm-core'
 
-gem 'rena'
+gem 'pius-rena'
 require 'rena'
 
 dir = Pathname(__FILE__).dirname.expand_path / 'dm-semantic'

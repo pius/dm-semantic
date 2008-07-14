@@ -3,6 +3,7 @@ DM-Semantic Release 0.0.1 (July 13th 2008)
 
 **Git**:  [http://github.com/pius/dm-semantic](http://github.com/pius/dm-semantic)   
 **Author**:    Pius Uzamere, The Uyiosa Corporation
+
 **Copyright**: 2008
 
 
@@ -42,7 +43,7 @@ Then:
 
 2. **Make Sure You've Got the Dependencies installed**
 
-DM-Semantic depends on Rena (http://github.com/tommorris/rena).  Use my version, to be safe.
+DM-Semantic depends on Rena (http://github.com/tommorris/rena).  For now, it depends on my version.
 
   > sudo gem install pius-rena
 
