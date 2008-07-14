@@ -1,0 +1,583 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../../style.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="../../syntax_highlight.css" type="text/css" charset="utf-8" />
+
+    <script src="../../jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../app.js" type="text/javascript" charset="utf-8"></script>
+    <title>Module: DataMapper::Semantic::ClassMethods</title>
+  </head>
+  <body>
+    <div id="content">
+      <div class="section module DataMapper_Semantic_ClassMethods">
+  <h1 class="title">Module: DataMapper::Semantic::ClassMethods</h1>
+  <div class="section constants">
+  
+</div>  <div class="section visibilitygroup public">
+    <h1>Public Visibility</h1>
+      <div class="section methodsummary instance public">
+    <h1>Public Instance Method Summary</h1>
+<table class="summary">
+  
+    <tr>
+      <th class="signature">
+        <span class='name'><a href='#ontologies-instance_method' title='#ontologies'>#ontologies</a></span><span class='args'>(format = :rdf)</span>
+        <span class='block'></span>
+        
+      </th>
+      <td class="docstring">
+        <p>
+Returns a hash of the ontologies to which the model is mapped, along with
+their authoritative URIs.
+</p>
+
+        
+          <p class='returns'>
+            Returns: 
+              <span class='return_types'>
+                 <tt>String</tt>
+              </span>
+          </p>
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        <span class='name'><a href='#to_owl-instance_method' title='#to_owl'>#to_owl</a></span><span class='args'>(*args)</span>
+        <span class='block'></span>
+        
+      </th>
+      <td class="docstring">
+        <p>
+Export the entire class definition as an OWL ontology.
+</p>
+
+        
+          <p class='returns'>
+            Returns: 
+              <span class='return_types'>
+                 <tt>String</tt>
+              </span>
+          </p>
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        <span class='name'><a href='#triples_for_class_definition-instance_method' title='#triples_for_class_definition'>#triples_for_class_definition</a></span><span class='args'></span>
+        <span class='block'></span>
+        
+      </th>
+      <td class="docstring">
+        <p>
+Create the basic OWL triples for the class, without the properties.
+</p>
+
+        
+          <p class='returns'>
+            Returns: 
+              <span class='return_types'>
+                 <tt>Graph</tt>
+              </span>
+          </p>
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        <span class='name'><a href='#triples_for_property-instance_method' title='#triples_for_property'>#triples_for_property</a></span><span class='args'>(property)</span>
+        <span class='block'></span>
+        
+      </th>
+      <td class="docstring">
+        <p>
+Create the OWL triples for a DataMapper property.
+</p>
+
+        
+          <p class='returns'>
+            Returns: 
+              <span class='return_types'>
+                 <tt>Graph</tt>
+              </span>
+          </p>
+        
+      </td>
+    </tr>
+  
+</table>
+  </div>
+<div class="section methoddetails instance public">
+  <h1>Public Instance Method Details</h1>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>ontologies</h3>
+</div><div id="ontologies-instance_method" class="section method">
+  <div class="details_title">
+  <div class='section methodsignature'>
+  <tt class='def'>
+    <span class='visibility'>public</span>
+    <span class='return_types'><tt>String</tt></span>
+    <span class='name'>ontologies</span><span class='args'>(format = :rdf)</span>
+    <span class='block'></span>
+  </tt>
+</div>
+
+</div><div class="section docstring">
+  <p>
+Returns a hash of the ontologies to which the model is mapped, along with
+their authoritative URIs.
+</p>
+<h4>Example</h4>
+<pre class="code">
+  <span class='Person constant id'>Person</span><span class='dot token'>.</span><span class='ontologies identifier id'>ontologies</span> <span class='comment val'># returns {:foaf =&gt; &quot;http://xmlns.com/foaf/spec/&quot;}</span>
+  <span class='Person constant id'>Person</span><span class='dot token'>.</span><span class='ontologies identifier id'>ontologies</span><span class='lparen token'>(</span><span class='symbol val'>:rdf</span><span class='rparen token'>)</span> <span class='comment val'># returns {:foaf =&gt; &quot;http://xmlns.com/foaf/spec/index.rdf&quot;}</span>
+</pre>
+
+</div><div class="section tags">
+  <h2>Meta Tags</h2>
+  <div class="param">
+  <h3>Parameters:</h3>
+  <dl>
+  
+    <dt>
+      
+        <span class='type'>[<tt>Symbol</tt>]</span>
+      
+      
+        <span class='name'>format</span>
+      
+    </dt>
+    <dd>
+      <span class='desc'><p>
+format of the ontology to which the URI points (:rdf, :turtle, or :json).
+Defaults to :rdf
+</p>
+</span>
+    </dd>
+  
+  </dl>
+</div>
+<div class="return">
+  <h3>Returns:</h3>
+  <dl>
+  
+    <dt>
+      
+        <span class='type'>[<tt>String</tt>]</span>
+      
+      
+        <span class='name'></span>
+      
+    </dt>
+    <dd>
+      <span class='desc'><p>
+the OWL ontology in the requested format.
+</p>
+</span>
+    </dd>
+  
+  </dl>
+</div>
+<div class="author">
+  <h3>Author:</h3>
+  <dl>
+  
+    <dt>
+      
+      
+    </dt>
+    <dd>
+      <span class='desc'><p>
+Pius Uzamere &#8212;
+</p>
+</span>
+    </dd>
+  
+  </dl>
+</div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+21
+22
+23</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/dm-semantic/functions.rb', line 21</span>
+
+<span class='def def kw'>def</span> <span class='ontologies identifier id'>ontologies</span><span class='lparen token'>(</span><span class='format identifier id'>format</span> <span class='assign token'>=</span> <span class='symbol val'>:rdf</span><span class='rparen token'>)</span>
+  <span class='raise identifier id'>raise</span> <span class='string val'>&quot;Not Yet Implemented&quot;</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>to_owl</h3>
+</div><div id="to_owl-instance_method" class="section method">
+  <div class="details_title">
+  <div class='section methodsignature'>
+  <tt class='def'>
+    <span class='visibility'>public</span>
+    <span class='return_types'><tt>String</tt></span>
+    <span class='name'>to_owl</span><span class='args'>(*args)</span>
+    <span class='block'></span>
+  </tt>
+</div>
+
+</div><div class="section docstring">
+  <p>
+Export the entire class definition as an OWL ontology.
+</p>
+<h4>Example</h4>
+<pre class="code">
+  <span class='Person constant id'>Person</span><span class='dot token'>.</span><span class='to_owl identifier id'>to_owl</span> <span class='comment val'># returns string representation of the OWL ontology in Turtle.</span>
+  <span class='Person constant id'>Person</span><span class='dot token'>.</span><span class='to_owl identifier id'>to_owl</span><span class='lparen token'>(</span><span class='symbol val'>:json</span><span class='rparen token'>)</span> <span class='comment val'># returns string representation of the OWL ontology in RDF-JSON.</span>
+</pre>
+
+</div><div class="section tags">
+  <h2>Meta Tags</h2>
+  <div class="param">
+  <h3>Parameters:</h3>
+  <dl>
+  
+    <dt>
+      
+        <span class='type'>[<tt>Symbol</tt>]</span>
+      
+      
+        <span class='name'>format</span>
+      
+    </dt>
+    <dd>
+      <span class='desc'><p>
+format of the OWL-RDF output (:xml, :turtle, or :json). Defaults to :turtle
+==== Rules for creating the ontology The class itself will be represented
+by a b-node.
+</p>
+</span>
+    </dd>
+  
+  </dl>
+</div>
+<div class="return">
+  <h3>Returns:</h3>
+  <dl>
+  
+    <dt>
+      
+        <span class='type'>[<tt>String</tt>]</span>
+      
+      
+        <span class='name'></span>
+      
+    </dt>
+    <dd>
+      <span class='desc'><p>
+the OWL ontology in the requested format.
+</p>
+</span>
+    </dd>
+  
+  </dl>
+</div>
+<div class="author">
+  <h3>Author:</h3>
+  <dl>
+  
+    <dt>
+      
+      
+    </dt>
+    <dd>
+      <span class='desc'><p>
+Pius Uzamere &#8212;
+</p>
+</span>
+    </dd>
+  
+  </dl>
+</div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/dm-semantic/functions.rb', line 43</span>
+
+<span class='def def kw'>def</span> <span class='to_owl identifier id'>to_owl</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
+  <span class='g identifier id'>g</span> <span class='assign token'>=</span> <span class='Graph constant id'>Graph</span><span class='dot token'>.</span><span class='new identifier id'>new</span>
+  <span class='owl identifier id'>owl</span> <span class='assign token'>=</span> <span class='Namespace constant id'>Namespace</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='string val'>'http://www.w3.org/2002/07/owl'</span><span class='comma token'>,</span> <span class='string val'>'owl'</span><span class='comma token'>,</span> <span class='true true kw'>true</span><span class='rparen token'>)</span>
+  <span class='foaf identifier id'>foaf</span> <span class='assign token'>=</span> <span class='Namespace constant id'>Namespace</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='string val'>&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;foaf&quot;</span><span class='rparen token'>)</span>
+  <span class='rdf identifier id'>rdf</span> <span class='assign token'>=</span> <span class='Namespace constant id'>Namespace</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='string val'>&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;rdf&quot;</span><span class='comma token'>,</span> <span class='true true kw'>true</span><span class='rparen token'>)</span>
+  <span class='rdfs identifier id'>rdfs</span> <span class='assign token'>=</span> <span class='Namespace constant id'>Namespace</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='string val'>&quot;http://www.w3.org/2000/01/rdf-schema&quot;</span><span class='comma token'>,</span> <span class='string val'>'rdfs'</span><span class='comma token'>,</span> <span class='true true kw'>true</span><span class='rparen token'>)</span>
+  <span class='xsd identifier id'>xsd</span> <span class='assign token'>=</span> <span class='Namespace constant id'>Namespace</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='string val'>'http://www.w3.org/2001/XMLSchema'</span><span class='comma token'>,</span> <span class='string val'>'xsd'</span><span class='comma token'>,</span> <span class='true true kw'>true</span><span class='rparen token'>)</span>
+  
+  <span class='for for kw'>for</span> <span class='property identifier id'>property</span> <span class='in in kw'>in</span> <span class='properties identifier id'>properties</span>
+    <span class='g identifier id'>g</span> <span class='lshft op'>&lt;&lt;</span> <span class='Triple constant id'>Triple</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='BNode constant id'>BNode</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='string val'>'john'</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='foaf identifier id'>foaf</span><span class='dot token'>.</span><span class='knows identifier id'>knows</span><span class='comma token'>,</span> <span class='BNode constant id'>BNode</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='string val'>'jane'</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
+  <span class='end end kw'>end</span>
+  <span class='return return kw'>return</span> <span class='g identifier id'>g</span><span class='dot token'>.</span><span class='to_ntriples identifier id'>to_ntriples</span>   
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>triples_for_class_definition</h3>
+</div><div id="triples_for_class_definition-instance_method" class="section method">
+  <div class="details_title">
+  <div class='section methodsignature'>
+  <tt class='def'>
+    <span class='visibility'>public</span>
+    <span class='return_types'><tt>Graph</tt></span>
+    <span class='name'>triples_for_class_definition</span><span class='args'></span>
+    <span class='block'></span>
+  </tt>
+</div>
+
+</div><div class="section docstring">
+  <p>
+Create the basic OWL triples for the class, without the properties.
+</p>
+<h4>Example</h4>
+<pre class="code">
+  <span class='Person constant id'>Person</span><span class='dot token'>.</span><span class='triple_for_class_definition identifier id'>triple_for_class_definition</span> <span class='comment val'># returns a graph of the triples representing the bare class in OWL.</span>
+</pre>
+<h4>Rules for creating the ontology</h4>
+<p>
+The class itself will be represented by a b-node.
+</p>
+<h4>Returns</h4>
+
+</div><div class="section tags">
+  <h2>Meta Tags</h2>
+  <div class="return">
+  <h3>Returns:</h3>
+  <dl>
+  
+    <dt>
+      
+        <span class='type'>[<tt>Graph</tt>]</span>
+      
+      
+        <span class='name'></span>
+      
+    </dt>
+    <dd>
+      <span class='desc'><p>
+graph of the OWL triples for the bare class.
+</p>
+</span>
+    </dd>
+  
+  </dl>
+</div>
+<div class="author">
+  <h3>Author:</h3>
+  <dl>
+  
+    <dt>
+      
+      
+    </dt>
+    <dd>
+      <span class='desc'><p>
+Pius Uzamere &#8212;
+</p>
+</span>
+    </dd>
+  
+  </dl>
+</div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+73
+74
+75
+76
+77
+78
+79</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/dm-semantic/functions.rb', line 73</span>
+
+<span class='def def kw'>def</span> <span class='triples_for_class_definition identifier id'>triples_for_class_definition</span>
+  <span class='declare_namespaces identifier id'>declare_namespaces</span>
+  <span class='g identifier id'>g</span> <span class='assign token'>=</span> <span class='Graph constant id'>Graph</span><span class='dot token'>.</span><span class='new identifier id'>new</span>
+  <span class='b identifier id'>b</span> <span class='assign token'>=</span> <span class='BNode constant id'>BNode</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='self self kw'>self</span><span class='dot token'>.</span><span class='name identifier id'>name</span><span class='rparen token'>)</span>
+  <span class='g identifier id'>g</span> <span class='lshft op'>&lt;&lt;</span> <span class='Triple constant id'>Triple</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='b identifier id'>b</span><span class='comma token'>,</span> <span class='URIRef constant id'>URIRef</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='string val'>'http://www.w3.org/1999/02/22-rdf-syntax-ns#type'</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='URIRef constant id'>URIRef</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='string val'>'http://www.w3.org/2002/07/owl#Class'</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
+  <span class='return return kw'>return</span> <span class='g identifier id'>g</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>triples_for_property</h3>
+</div><div id="triples_for_property-instance_method" class="section method">
+  <div class="details_title">
+  <div class='section methodsignature'>
+  <tt class='def'>
+    <span class='visibility'>public</span>
+    <span class='return_types'><tt>Graph</tt></span>
+    <span class='name'>triples_for_property</span><span class='args'>(property)</span>
+    <span class='block'></span>
+  </tt>
+</div>
+
+</div><div class="section docstring">
+  <p>
+Create the OWL triples for a DataMapper property.
+</p>
+<h4>Example</h4>
+<pre class="code">
+  <span class='Person constant id'>Person</span><span class='dot token'>.</span><span class='triples_for_property identifier id'>triples_for_property</span><span class='lparen token'>(</span><span class='Person constant id'>Person</span><span class='dot token'>.</span><span class='properties identifier id'>properties</span><span class='lbrack token'>[</span><span class='symbol val'>:id</span><span class='rbrack token'>]</span><span class='rparen token'>)</span> <span class='comment val'># returns a graph of the triples representing the id property on Person in OWL.</span>
+</pre>
+<h4>Returns</h4>
+
+</div><div class="section tags">
+  <h2>Meta Tags</h2>
+  <div class="return">
+  <h3>Returns:</h3>
+  <dl>
+  
+    <dt>
+      
+        <span class='type'>[<tt>Graph</tt>]</span>
+      
+      
+        <span class='name'></span>
+      
+    </dt>
+    <dd>
+      <span class='desc'><p>
+graph of the OWL triples for the property.
+</p>
+</span>
+    </dd>
+  
+  </dl>
+</div>
+<div class="author">
+  <h3>Author:</h3>
+  <dl>
+  
+    <dt>
+      
+      
+    </dt>
+    <dd>
+      <span class='desc'><p>
+Pius Uzamere &#8212;
+</p>
+</span>
+    </dd>
+  
+  </dl>
+</div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+95
+96
+97
+98
+99
+100
+101</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/dm-semantic/functions.rb', line 95</span>
+
+<span class='def def kw'>def</span> <span class='triples_for_property identifier id'>triples_for_property</span><span class='lparen token'>(</span><span class='property identifier id'>property</span><span class='rparen token'>)</span>
+  <span class='g identifier id'>g</span> <span class='assign token'>=</span> <span class='Graph constant id'>Graph</span><span class='dot token'>.</span><span class='new identifier id'>new</span>
+  <span class='b identifier id'>b</span> <span class='assign token'>=</span> <span class='BNode constant id'>BNode</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='property identifier id'>property</span><span class='dot token'>.</span><span class='field identifier id'>field</span><span class='rparen token'>)</span>
+  <span class='t identifier id'>t</span> <span class='assign token'>=</span> <span class='Triple constant id'>Triple</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='b identifier id'>b</span><span class='comma token'>,</span> <span class='URIRef constant id'>URIRef</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='string val'>'http://www.w3.org/1999/02/22-rdf-syntax-ns#type'</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='URIRef constant id'>URIRef</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='string val'>'http://www.w3.org/2002/07/owl#DatatypeProperty'</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
+  <span class='g identifier id'>g</span> <span class='lshft op'>&lt;&lt;</span> <span class='t identifier id'>t</span>
+  <span class='return return kw'>return</span> <span class='g identifier id'>g</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+</div>
+  </div>
+
+</div>
+    </div>
+  </body>
+</html>
