@@ -26,11 +26,11 @@ span.marked1 {
  display: block;
 }
 span.inferred0 {
- background-color: rgb(175, 200, 200);
+ background-color: rgb(255, 255, 240);
  display: block;
 }
 span.inferred1 {
- background-color: rgb(180, 205, 205);
+ background-color: rgb(255, 255, 240);
  display: block;
 }
 span.uncovered0 {
@@ -132,7 +132,7 @@ table.report tr.dark {
       return false;
 
     elemStyle = elem.style;
-    
+
     if ( elemStyle.display != "block" ) {
       elemStyle.display = "block"
     } else {
@@ -141,7 +141,7 @@ table.report tr.dark {
 
     return true;
   }
-  
+
   // Make cross-references hidden by default
   document.writeln( "<style type=\"text/css\">span.cross-ref { display: none }</style>" )
   // ]]>
@@ -553,7 +553,7 @@ span.run100 {
 </style>
     </head>
   <body><h3>C0 code coverage information</h3>
-    <p>Generated on Mon Jul 14 00:11:52 -0400 2008 with <a href='http://eigenclass.org/hiki/rcov'>rcov 0.8.1.2</a>
+    <p>Generated on Thu Jan 08 16:01:46 -0500 2009 with <a href='http://eigenclass.org/hiki/rcov'>rcov 0.8.1.3</a>
       </p>
     <hr/>
     <pre><span class='marked0'>Code reported as executed by Ruby looks like this...
@@ -561,7 +561,7 @@ span.run100 {
 </span><span class='inferred0'>Lines considered as run by rcov, but not reported by Ruby, look like this,
 </span><span class='inferred1'>and this: these lines were inferred by rcov (using simple heuristics).
 </span><span class='uncovered0'>Finally, here&apos;s a line marked as not executed.
-</span></pre>                       
+</span></pre>
 <table class='report'><thead><tr><td class='heading'>Name</td>
       <td class='heading'>Total lines</td>
       <td class='heading'>Lines of code</td>
@@ -571,11 +571,11 @@ span.run100 {
     </thead>
   <tbody><tr class='light'><td><a href='lib-dm-semantic-functions_rb.html'>lib/dm-semantic/functions.rb</a>
         </td>
-      <td class='lines_total'><tt>156</tt>
+      <td class='lines_total'><tt>173</tt>
         </td>
       <td class='lines_code'><tt>53</tt>
         </td>
-      <td><table cellspacing='0' cellpadding='0' align='right'><tr><td><tt class='coverage_total'>95.5%</tt>
+      <td><table cellspacing='0' cellpadding='0' align='right'><tr><td><tt class='coverage_total'>96.0%</tt>
               &nbsp;</td>
             <td><table cellspacing='0' class='percent_graph' cellpadding='0' width='100'><tr><td class='covered' width='96'/>
                   <td class='uncovered' width='4'/>
@@ -601,162 +601,179 @@ span.run100 {
 <pre><span class="marked0"><a name="line1"></a>  1 module DataMapper
 </span><span class="marked1"><a name="line2"></a>  2   module Semantic
 </span><span class="marked0"><a name="line3"></a>  3       module ClassMethods
-</span><span class="inferred1"><a name="line4"></a>  4 
-</span><span class="inferred0"><a name="line5"></a>  5         ## 
-</span><span class="inferred1"><a name="line6"></a>  6         # Returns a hash of the ontologies to which the model is mapped, along with their authoritative URIs.
-</span><span class="inferred0"><a name="line7"></a>  7         #
-</span><span class="inferred1"><a name="line8"></a>  8         # ==== Example
-</span><span class="inferred0"><a name="line9"></a>  9         #   Person.ontologies # returns {:foaf =&gt; &quot;http://xmlns.com/foaf/spec/&quot;}
-</span><span class="inferred1"><a name="line10"></a> 10         #   Person.ontologies(:rdf) # returns {:foaf =&gt; &quot;http://xmlns.com/foaf/spec/index.rdf&quot;}
-</span><span class="inferred0"><a name="line11"></a> 11         #
-</span><span class="inferred1"><a name="line12"></a> 12         # @param [Symbol] format format of the ontology to which the URI points (:rdf, :turtle, or :json).  Defaults to :rdf
-</span><span class="inferred0"><a name="line13"></a> 13         #
-</span><span class="inferred1"><a name="line14"></a> 14         # ==== Returns
-</span><span class="inferred0"><a name="line15"></a> 15         # @return [String] the OWL ontology in the requested format.
-</span><span class="inferred1"><a name="line16"></a> 16         #
-</span><span class="inferred0"><a name="line17"></a> 17         # @author Pius Uzamere
-</span><span class="inferred1"><a name="line18"></a> 18         #---
-</span><span class="inferred0"><a name="line19"></a> 19         # @public
-</span><span class="inferred1"><a name="line20"></a> 20 
-</span><span class="marked0"><a name="line21"></a> 21         def ontologies(format = :rdf)
-</span><span class="uncovered1"><a name="line22"></a> 22           raise &quot;Not Yet Implemented&quot;
-</span><span class="uncovered0"><a name="line23"></a> 23         end
-</span><span class="inferred1"><a name="line24"></a> 24         
-</span><span class="inferred0"><a name="line25"></a> 25         ## 
-</span><span class="inferred1"><a name="line26"></a> 26         # Export the entire class definition as an OWL ontology.
-</span><span class="inferred0"><a name="line27"></a> 27         #
-</span><span class="inferred1"><a name="line28"></a> 28         # ==== Example
-</span><span class="inferred0"><a name="line29"></a> 29         #   Person.to_owl # returns string representation of the OWL ontology in Turtle.
-</span><span class="inferred1"><a name="line30"></a> 30         #   Person.to_owl(:json) # returns string representation of the OWL ontology in RDF-JSON.
-</span><span class="inferred0"><a name="line31"></a> 31         #
-</span><span class="inferred1"><a name="line32"></a> 32         # @param [Symbol] format format of the OWL-RDF output (:xml, :turtle, or :json).  Defaults to :turtle
-</span><span class="inferred0"><a name="line33"></a> 33         # ==== Rules for creating the ontology
-</span><span class="inferred1"><a name="line34"></a> 34         # The class itself will be represented by a b-node.
-</span><span class="inferred0"><a name="line35"></a> 35         #
-</span><span class="inferred1"><a name="line36"></a> 36         # ==== Returns
-</span><span class="inferred0"><a name="line37"></a> 37         # @return [String] the OWL ontology in the requested format.
-</span><span class="inferred1"><a name="line38"></a> 38         #
-</span><span class="inferred0"><a name="line39"></a> 39         # @author Pius Uzamere
-</span><span class="inferred1"><a name="line40"></a> 40         #---
-</span><span class="inferred0"><a name="line41"></a> 41         # @public
-</span><span class="inferred1"><a name="line42"></a> 42 
-</span><span class="marked0"><a name="line43"></a> 43         def to_owl(*args)
-</span><span class="marked1"><a name="line44"></a> 44           g = Graph.new
-</span><span class="marked0"><a name="line45"></a> 45           owl = Namespace.new('http://www.w3.org/2002/07/owl', 'owl', true)
-</span><span class="marked1"><a name="line46"></a> 46           foaf = Namespace.new(&quot;http://xmlns.com/foaf/0.1/&quot;, &quot;foaf&quot;)
-</span><span class="marked0"><a name="line47"></a> 47           rdf = Namespace.new(&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns&quot;, &quot;rdf&quot;, true)
-</span><span class="marked1"><a name="line48"></a> 48           rdfs = Namespace.new(&quot;http://www.w3.org/2000/01/rdf-schema&quot;, 'rdfs', true)
-</span><span class="marked0"><a name="line49"></a> 49           xsd = Namespace.new('http://www.w3.org/2001/XMLSchema', 'xsd', true)
-</span><span class="inferred1"><a name="line50"></a> 50   
-</span><span class="marked0"><a name="line51"></a> 51           for property in properties
-</span><span class="uncovered1"><a name="line52"></a> 52             g &lt;&lt; Triple.new(BNode.new('john'), foaf.knows, BNode.new('jane'))
-</span><span class="uncovered0"><a name="line53"></a> 53           end
-</span><span class="marked1"><a name="line54"></a> 54           return g
-</span><span class="inferred0"><a name="line55"></a> 55         end
-</span><span class="inferred1"><a name="line56"></a> 56         
-</span><span class="inferred0"><a name="line57"></a> 57         ## 
-</span><span class="inferred1"><a name="line58"></a> 58         # Create the basic OWL triples for the class, without the properties.
-</span><span class="inferred0"><a name="line59"></a> 59         #
-</span><span class="inferred1"><a name="line60"></a> 60         # ==== Example
-</span><span class="inferred0"><a name="line61"></a> 61         #   Person.triple_for_class_definition # returns a graph of the triples representing the bare class in OWL.
-</span><span class="inferred1"><a name="line62"></a> 62         #
-</span><span class="inferred0"><a name="line63"></a> 63         # ==== Rules for creating the ontology
-</span><span class="inferred1"><a name="line64"></a> 64         # The class itself will be represented by a b-node.
-</span><span class="inferred0"><a name="line65"></a> 65         #
-</span><span class="inferred1"><a name="line66"></a> 66         # ==== Returns
-</span><span class="inferred0"><a name="line67"></a> 67         # @return [Graph] graph of the OWL triples for the bare class.
-</span><span class="inferred1"><a name="line68"></a> 68         #
-</span><span class="inferred0"><a name="line69"></a> 69         # @author Pius Uzamere
-</span><span class="inferred1"><a name="line70"></a> 70         #---
-</span><span class="inferred0"><a name="line71"></a> 71         # @public
-</span><span class="inferred1"><a name="line72"></a> 72         
-</span><span class="marked0"><a name="line73"></a> 73         def triples_for_class_definition
-</span><span class="marked1"><a name="line74"></a> 74           declare_namespaces
-</span><span class="marked0"><a name="line75"></a> 75           g = Graph.new
-</span><span class="marked1"><a name="line76"></a> 76           b = BNode.new(self.name)
-</span><span class="marked0"><a name="line77"></a> 77           g &lt;&lt; Triple.new(b, URIRef.new('http://www.w3.org/1999/02/22-rdf-syntax-ns#type'), URIRef.new('http://www.w3.org/2002/07/owl#Class'))
-</span><span class="marked1"><a name="line78"></a> 78           return g
-</span><span class="inferred0"><a name="line79"></a> 79         end
-</span><span class="inferred1"><a name="line80"></a> 80         
-</span><span class="inferred0"><a name="line81"></a> 81         ## 
-</span><span class="inferred1"><a name="line82"></a> 82         # Create the OWL triples for a DataMapper property.
-</span><span class="inferred0"><a name="line83"></a> 83         #
-</span><span class="inferred1"><a name="line84"></a> 84         # ==== Example
-</span><span class="inferred0"><a name="line85"></a> 85         #   Person.triples_for_property(Person.properties[:id]) # returns a graph of the triples representing the id property on Person in OWL.
-</span><span class="inferred1"><a name="line86"></a> 86         #
-</span><span class="inferred0"><a name="line87"></a> 87         #
-</span><span class="inferred1"><a name="line88"></a> 88         # ==== Returns
-</span><span class="inferred0"><a name="line89"></a> 89         # @return [Graph] graph of the OWL triples for the property.
-</span><span class="inferred1"><a name="line90"></a> 90         #
-</span><span class="inferred0"><a name="line91"></a> 91         # @author Pius Uzamere
-</span><span class="inferred1"><a name="line92"></a> 92         #---
-</span><span class="inferred0"><a name="line93"></a> 93         # @public
-</span><span class="inferred1"><a name="line94"></a> 94         
-</span><span class="marked0"><a name="line95"></a> 95         def triples_for_property(property)
-</span><span class="marked1"><a name="line96"></a> 96           g = Graph.new
-</span><span class="marked0"><a name="line97"></a> 97           b = BNode.new(property.field)
-</span><span class="marked1"><a name="line98"></a> 98           t = Triple.new(b, URIRef.new('http://www.w3.org/1999/02/22-rdf-syntax-ns#type'), URIRef.new('http://www.w3.org/2002/07/owl#DatatypeProperty'))
-</span><span class="marked0"><a name="line99"></a> 99           g &lt;&lt; t
-</span><span class="marked1"><a name="line100"></a>100           return g
-</span><span class="inferred0"><a name="line101"></a>101         end
-</span><span class="inferred1"><a name="line102"></a>102         
-</span><span class="marked0"><a name="line103"></a>103         protected
-</span><span class="inferred1"><a name="line104"></a>104         
-</span><span class="inferred0"><a name="line105"></a>105         ## 
-</span><span class="inferred1"><a name="line106"></a>106         # Utility method to declare a bunch of useful namespaces.
+</span><span class="inferred1"><a name="line4"></a>  4         
+</span><span class="inferred0"><a name="line5"></a>  5         # property :id,                         Serial
+</span><span class="inferred1"><a name="line6"></a>  6         # property :login,                      String,   :nullable =&gt; false, :length =&gt; 3..40, :unique =&gt; true
+</span><span class="inferred0"><a name="line7"></a>  7         # property :email,                      String,   :nullable =&gt; false, :unique =&gt; true
+</span><span class="inferred1"><a name="line8"></a>  8         # property :created_at,                 DateTime
+</span><span class="inferred0"><a name="line9"></a>  9         # property :updated_at,                 DateTime
+</span><span class="inferred1"><a name="line10"></a> 10         # property :activated_at,               DateTime
+</span><span class="inferred0"><a name="line11"></a> 11         # property :activation_code,            String
+</span><span class="inferred1"><a name="line12"></a> 12         # property :crypted_password,           String
+</span><span class="inferred0"><a name="line13"></a> 13         # property :salt,                       String
+</span><span class="inferred1"><a name="line14"></a> 14         # property :remember_token_expires_at,  DateTime
+</span><span class="inferred0"><a name="line15"></a> 15         # property :remember_token,             String
+</span><span class="inferred1"><a name="line16"></a> 16         # property :password_reset_key,         String, :writer =&gt; :protected
+</span><span class="inferred0"><a name="line17"></a> 17         
+</span><span class="inferred1"><a name="line18"></a> 18         # Triple.new(:User, is_a, FOAF:Person)
+</span><span class="inferred0"><a name="line19"></a> 19         # Triple.new(:id, rdf:datatype, :integer)
+</span><span class="inferred1"><a name="line20"></a> 20         # Triple.new(:login, rdf:datatype, :string)
+</span><span class="inferred0"><a name="line21"></a> 21 
+</span><span class="inferred1"><a name="line22"></a> 22         ## 
+</span><span class="inferred0"><a name="line23"></a> 23         # Returns a hash of the ontologies to which the model is mapped, along with their authoritative URIs.
+</span><span class="inferred1"><a name="line24"></a> 24         #
+</span><span class="inferred0"><a name="line25"></a> 25         # ==== Example
+</span><span class="inferred1"><a name="line26"></a> 26         #   Person.ontologies # returns {:foaf =&gt; &quot;http://xmlns.com/foaf/spec/&quot;}
+</span><span class="inferred0"><a name="line27"></a> 27         #   Person.ontologies(:rdf) # returns {:foaf =&gt; &quot;http://xmlns.com/foaf/spec/index.rdf&quot;}
+</span><span class="inferred1"><a name="line28"></a> 28         #
+</span><span class="inferred0"><a name="line29"></a> 29         # @param [Symbol] format format of the ontology to which the URI points (:rdf, :turtle, or :json).  Defaults to :rdf
+</span><span class="inferred1"><a name="line30"></a> 30         #
+</span><span class="inferred0"><a name="line31"></a> 31         # ==== Returns
+</span><span class="inferred1"><a name="line32"></a> 32         # @return [String] the OWL ontology in the requested format.
+</span><span class="inferred0"><a name="line33"></a> 33         #
+</span><span class="inferred1"><a name="line34"></a> 34         # @author Pius Uzamere
+</span><span class="inferred0"><a name="line35"></a> 35         #---
+</span><span class="inferred1"><a name="line36"></a> 36         # @public
+</span><span class="inferred0"><a name="line37"></a> 37 
+</span><span class="marked1"><a name="line38"></a> 38         def ontologies(format = :rdf)
+</span><span class="uncovered0"><a name="line39"></a> 39           raise &quot;Not Yet Implemented&quot;
+</span><span class="uncovered1"><a name="line40"></a> 40         end
+</span><span class="inferred0"><a name="line41"></a> 41         
+</span><span class="inferred1"><a name="line42"></a> 42         ## 
+</span><span class="inferred0"><a name="line43"></a> 43         # Export the entire class definition as an OWL ontology.
+</span><span class="inferred1"><a name="line44"></a> 44         #
+</span><span class="inferred0"><a name="line45"></a> 45         # ==== Example
+</span><span class="inferred1"><a name="line46"></a> 46         #   Person.to_owl # returns string representation of the OWL ontology in Turtle.
+</span><span class="inferred0"><a name="line47"></a> 47         #   Person.to_owl(:json) # returns string representation of the OWL ontology in RDF-JSON.
+</span><span class="inferred1"><a name="line48"></a> 48         #
+</span><span class="inferred0"><a name="line49"></a> 49         # @param [Symbol] format format of the OWL-RDF output (:xml, :turtle, or :json).  Defaults to :turtle
+</span><span class="inferred1"><a name="line50"></a> 50         # ==== Rules for creating the ontology
+</span><span class="inferred0"><a name="line51"></a> 51         # The class itself will be represented by a b-node.
+</span><span class="inferred1"><a name="line52"></a> 52         #
+</span><span class="inferred0"><a name="line53"></a> 53         # ==== Returns
+</span><span class="inferred1"><a name="line54"></a> 54         # @return [String] the OWL ontology in the requested format.
+</span><span class="inferred0"><a name="line55"></a> 55         #
+</span><span class="inferred1"><a name="line56"></a> 56         # @author Pius Uzamere
+</span><span class="inferred0"><a name="line57"></a> 57         #---
+</span><span class="inferred1"><a name="line58"></a> 58         # @public
+</span><span class="inferred0"><a name="line59"></a> 59 
+</span><span class="marked1"><a name="line60"></a> 60         def to_owl(*args)
+</span><span class="marked0"><a name="line61"></a> 61           g = Graph.new
+</span><span class="marked1"><a name="line62"></a> 62           owl = Namespace.new('http://www.w3.org/2002/07/owl', 'owl', true)
+</span><span class="marked0"><a name="line63"></a> 63           foaf = Namespace.new(&quot;http://xmlns.com/foaf/0.1/&quot;, &quot;foaf&quot;)
+</span><span class="marked1"><a name="line64"></a> 64           rdf = Namespace.new(&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns&quot;, &quot;rdf&quot;, true)
+</span><span class="marked0"><a name="line65"></a> 65           rdfs = Namespace.new(&quot;http://www.w3.org/2000/01/rdf-schema&quot;, 'rdfs', true)
+</span><span class="marked1"><a name="line66"></a> 66           xsd = Namespace.new('http://www.w3.org/2001/XMLSchema', 'xsd', true)
+</span><span class="inferred0"><a name="line67"></a> 67   
+</span><span class="marked1"><a name="line68"></a> 68           for property in properties
+</span><span class="uncovered0"><a name="line69"></a> 69             g &lt;&lt; Triple.new(BNode.new('john'), foaf.knows, BNode.new('jane'))
+</span><span class="uncovered1"><a name="line70"></a> 70           end
+</span><span class="marked0"><a name="line71"></a> 71           return g
+</span><span class="inferred1"><a name="line72"></a> 72         end
+</span><span class="inferred0"><a name="line73"></a> 73         
+</span><span class="inferred1"><a name="line74"></a> 74         ## 
+</span><span class="inferred0"><a name="line75"></a> 75         # Create the basic OWL triples for the class, without the properties.
+</span><span class="inferred1"><a name="line76"></a> 76         #
+</span><span class="inferred0"><a name="line77"></a> 77         # ==== Example
+</span><span class="inferred1"><a name="line78"></a> 78         #   Person.triple_for_class_definition # returns a graph of the triples representing the bare class in OWL.
+</span><span class="inferred0"><a name="line79"></a> 79         #
+</span><span class="inferred1"><a name="line80"></a> 80         # ==== Rules for creating the ontology
+</span><span class="inferred0"><a name="line81"></a> 81         # The class itself will be represented by a b-node.
+</span><span class="inferred1"><a name="line82"></a> 82         #
+</span><span class="inferred0"><a name="line83"></a> 83         # ==== Returns
+</span><span class="inferred1"><a name="line84"></a> 84         # @return [Graph] graph of the OWL triples for the bare class.
+</span><span class="inferred0"><a name="line85"></a> 85         #
+</span><span class="inferred1"><a name="line86"></a> 86         # @author Pius Uzamere
+</span><span class="inferred0"><a name="line87"></a> 87         #---
+</span><span class="inferred1"><a name="line88"></a> 88         # @public
+</span><span class="inferred0"><a name="line89"></a> 89         
+</span><span class="marked1"><a name="line90"></a> 90         def triples_for_class_definition
+</span><span class="marked0"><a name="line91"></a> 91           declare_namespaces
+</span><span class="marked1"><a name="line92"></a> 92           g = Graph.new
+</span><span class="marked0"><a name="line93"></a> 93           b = BNode.new(self.name)
+</span><span class="marked1"><a name="line94"></a> 94           g &lt;&lt; Triple.new(b, URIRef.new('http://www.w3.org/1999/02/22-rdf-syntax-ns#type'), URIRef.new('http://www.w3.org/2002/07/owl#Class'))
+</span><span class="marked0"><a name="line95"></a> 95           return g
+</span><span class="inferred1"><a name="line96"></a> 96         end
+</span><span class="inferred0"><a name="line97"></a> 97         
+</span><span class="inferred1"><a name="line98"></a> 98         ## 
+</span><span class="inferred0"><a name="line99"></a> 99         # Create the OWL triples for a DataMapper property.
+</span><span class="inferred1"><a name="line100"></a>100         #
+</span><span class="inferred0"><a name="line101"></a>101         # ==== Example
+</span><span class="inferred1"><a name="line102"></a>102         #   Person.triples_for_property(Person.properties[:id]) # returns a graph of the triples representing the id property on Person in OWL.
+</span><span class="inferred0"><a name="line103"></a>103         #
+</span><span class="inferred1"><a name="line104"></a>104         #
+</span><span class="inferred0"><a name="line105"></a>105         # ==== Returns
+</span><span class="inferred1"><a name="line106"></a>106         # @return [Graph] graph of the OWL triples for the property.
 </span><span class="inferred0"><a name="line107"></a>107         #
-</span><span class="inferred1"><a name="line108"></a>108         # ==== Example
-</span><span class="inferred0"><a name="line109"></a>109         #   Person.declare_namespaces # instantiates some useful namespaces.
-</span><span class="inferred1"><a name="line110"></a>110         #
-</span><span class="inferred0"><a name="line111"></a>111         # @author Pius Uzamere
-</span><span class="inferred1"><a name="line112"></a>112         #---
-</span><span class="inferred0"><a name="line113"></a>113         # @protected
-</span><span class="inferred1"><a name="line114"></a>114         
-</span><span class="marked0"><a name="line115"></a>115         def declare_namespaces
-</span><span class="marked1"><a name="line116"></a>116           foaf = Namespace.new(&quot;http://xmlns.com/foaf/0.1/&quot;, &quot;foaf&quot;)
-</span><span class="marked0"><a name="line117"></a>117           rdf = Namespace.new(&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns&quot;, &quot;rdf&quot;, true)
-</span><span class="marked1"><a name="line118"></a>118           rdfs = Namespace.new(&quot;http://www.w3.org/2000/01/rdf-schema&quot;, 'rdfs', true)
-</span><span class="marked0"><a name="line119"></a>119           xsd = Namespace.new('http://www.w3.org/2001/XMLSchema', 'xsd', true)
-</span><span class="marked1"><a name="line120"></a>120           owl = Namespace.new('http://www.w3.org/2002/07/owl', 'owl', true)
-</span><span class="inferred0"><a name="line121"></a>121         end
-</span><span class="inferred1"><a name="line122"></a>122         
-</span><span class="inferred0"><a name="line123"></a>123     end
-</span><span class="inferred1"><a name="line124"></a>124 
-</span><span class="inferred0"><a name="line125"></a>125     
-</span><span class="marked1"><a name="line126"></a>126     module InstanceMethods
-</span><span class="inferred0"><a name="line127"></a>127         
-</span><span class="inferred1"><a name="line128"></a>128         ## 
-</span><span class="inferred0"><a name="line129"></a>129         # Export a representation of the instance in RDF.
-</span><span class="inferred1"><a name="line130"></a>130         #
-</span><span class="inferred0"><a name="line131"></a>131         # ==== Example
-</span><span class="inferred1"><a name="line132"></a>132         #   Friend.first.to_rdf # returns the first Friend model instance in RDF using its ontology
-</span><span class="inferred0"><a name="line133"></a>133         #
-</span><span class="inferred1"><a name="line134"></a>134         # @param [Symbol] format format of the OWL-RDF output (:xml, :turtle, or :json).  Defaults to :turtle
-</span><span class="inferred0"><a name="line135"></a>135         #
-</span><span class="inferred1"><a name="line136"></a>136         # ==== Returns
-</span><span class="inferred0"><a name="line137"></a>137         # @return [String] the RDF representation in the requested serialization format.
-</span><span class="inferred1"><a name="line138"></a>138         #
-</span><span class="inferred0"><a name="line139"></a>139         # @author Pius Uzamere
-</span><span class="inferred1"><a name="line140"></a>140         #---
-</span><span class="inferred0"><a name="line141"></a>141         # @public
-</span><span class="inferred1"><a name="line142"></a>142         
-</span><span class="marked0"><a name="line143"></a>143          def to_rdf(format = :xml)
-</span><span class="uncovered1"><a name="line144"></a>144            raise &quot;not yet implemented&quot;
-</span><span class="uncovered0"><a name="line145"></a>145          end
-</span><span class="uncovered1"><a name="line146"></a>146     end
-</span><span class="inferred0"><a name="line147"></a>147     
-</span><span class="marked1"><a name="line148"></a>148     private
-</span><span class="inferred0"><a name="line149"></a>149     
-</span><span class="marked1"><a name="line150"></a>150     def self.included(receiver)
-</span><span class="marked0"><a name="line151"></a>151       receiver.extend(ClassMethods)
-</span><span class="marked1"><a name="line152"></a>152       receiver.send :include, InstanceMethods
-</span><span class="inferred0"><a name="line153"></a>153     end
-</span><span class="inferred1"><a name="line154"></a>154     
-</span><span class="inferred0"><a name="line155"></a>155   end
-</span><span class="inferred1"><a name="line156"></a>156 end
+</span><span class="inferred1"><a name="line108"></a>108         # @author Pius Uzamere
+</span><span class="inferred0"><a name="line109"></a>109         #---
+</span><span class="inferred1"><a name="line110"></a>110         # @public
+</span><span class="inferred0"><a name="line111"></a>111         
+</span><span class="marked1"><a name="line112"></a>112         def triples_for_property(property)
+</span><span class="marked0"><a name="line113"></a>113           g = Graph.new
+</span><span class="marked1"><a name="line114"></a>114           b = BNode.new(property.field)
+</span><span class="marked0"><a name="line115"></a>115           t = Triple.new(b, URIRef.new('http://www.w3.org/1999/02/22-rdf-syntax-ns#type'), URIRef.new('http://www.w3.org/2002/07/owl#DatatypeProperty'))
+</span><span class="marked1"><a name="line116"></a>116           g &lt;&lt; t
+</span><span class="marked0"><a name="line117"></a>117           return g
+</span><span class="inferred1"><a name="line118"></a>118         end
+</span><span class="inferred0"><a name="line119"></a>119         
+</span><span class="marked1"><a name="line120"></a>120         protected
+</span><span class="inferred0"><a name="line121"></a>121         
+</span><span class="inferred1"><a name="line122"></a>122         ## 
+</span><span class="inferred0"><a name="line123"></a>123         # Utility method to declare a bunch of useful namespaces.
+</span><span class="inferred1"><a name="line124"></a>124         #
+</span><span class="inferred0"><a name="line125"></a>125         # ==== Example
+</span><span class="inferred1"><a name="line126"></a>126         #   Person.declare_namespaces # instantiates some useful namespaces.
+</span><span class="inferred0"><a name="line127"></a>127         #
+</span><span class="inferred1"><a name="line128"></a>128         # @author Pius Uzamere
+</span><span class="inferred0"><a name="line129"></a>129         #---
+</span><span class="inferred1"><a name="line130"></a>130         # @protected
+</span><span class="inferred0"><a name="line131"></a>131         
+</span><span class="marked1"><a name="line132"></a>132         def declare_namespaces
+</span><span class="marked0"><a name="line133"></a>133           foaf = Namespace.new(&quot;http://xmlns.com/foaf/0.1/&quot;, &quot;foaf&quot;)
+</span><span class="marked1"><a name="line134"></a>134           rdf = Namespace.new(&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns&quot;, &quot;rdf&quot;, true)
+</span><span class="marked0"><a name="line135"></a>135           rdfs = Namespace.new(&quot;http://www.w3.org/2000/01/rdf-schema&quot;, 'rdfs', true)
+</span><span class="marked1"><a name="line136"></a>136           xsd = Namespace.new('http://www.w3.org/2001/XMLSchema', 'xsd', true)
+</span><span class="marked0"><a name="line137"></a>137           owl = Namespace.new('http://www.w3.org/2002/07/owl', 'owl', true)
+</span><span class="inferred1"><a name="line138"></a>138         end
+</span><span class="inferred0"><a name="line139"></a>139         
+</span><span class="inferred1"><a name="line140"></a>140     end
+</span><span class="inferred0"><a name="line141"></a>141 
+</span><span class="inferred1"><a name="line142"></a>142     
+</span><span class="marked0"><a name="line143"></a>143     module InstanceMethods
+</span><span class="inferred1"><a name="line144"></a>144         
+</span><span class="inferred0"><a name="line145"></a>145         ## 
+</span><span class="inferred1"><a name="line146"></a>146         # Export a representation of the instance in RDF.
+</span><span class="inferred0"><a name="line147"></a>147         #
+</span><span class="inferred1"><a name="line148"></a>148         # ==== Example
+</span><span class="inferred0"><a name="line149"></a>149         #   Friend.first.to_rdf # returns the first Friend model instance in RDF using its ontology
+</span><span class="inferred1"><a name="line150"></a>150         #
+</span><span class="inferred0"><a name="line151"></a>151         # @param [Symbol] format format of the OWL-RDF output (:xml, :turtle, or :json).  Defaults to :turtle
+</span><span class="inferred1"><a name="line152"></a>152         #
+</span><span class="inferred0"><a name="line153"></a>153         # ==== Returns
+</span><span class="inferred1"><a name="line154"></a>154         # @return [String] the RDF representation in the requested serialization format.
+</span><span class="inferred0"><a name="line155"></a>155         #
+</span><span class="inferred1"><a name="line156"></a>156         # @author Pius Uzamere
+</span><span class="inferred0"><a name="line157"></a>157         #---
+</span><span class="inferred1"><a name="line158"></a>158         # @public
+</span><span class="inferred0"><a name="line159"></a>159         
+</span><span class="marked1"><a name="line160"></a>160          def to_rdf(format = :xml)
+</span><span class="uncovered0"><a name="line161"></a>161            raise &quot;not yet implemented&quot;
+</span><span class="uncovered1"><a name="line162"></a>162          end
+</span><span class="uncovered0"><a name="line163"></a>163     end
+</span><span class="inferred1"><a name="line164"></a>164     
+</span><span class="marked0"><a name="line165"></a>165     private
+</span><span class="inferred1"><a name="line166"></a>166     
+</span><span class="marked0"><a name="line167"></a>167     def self.included(receiver)
+</span><span class="marked1"><a name="line168"></a>168       receiver.extend(ClassMethods)
+</span><span class="marked0"><a name="line169"></a>169       receiver.send :include, InstanceMethods
+</span><span class="inferred1"><a name="line170"></a>170     end
+</span><span class="inferred0"><a name="line171"></a>171     
+</span><span class="inferred1"><a name="line172"></a>172   end
+</span><span class="inferred0"><a name="line173"></a>173 end
 </span></pre><hr/>
     <p>Generated using the <a href='http://eigenclass.org/hiki.rb?rcov'>rcov code coverage analysis tool for Ruby</a>
-   version 0.8.1.2.</p>
+   version 0.8.1.3.</p>
 <p><a href='http://validator.w3.org/check/referer'><img src='http://www.w3.org/Icons/valid-xhtml10' height='31' alt='Valid XHTML 1.0!' width='88'/>
         </a>
       <a href='http://jigsaw.w3.org/css-validator/check/referer'><img src='http://jigsaw.w3.org/css-validator/images/vcss' alt='Valid CSS!' style='border:0;width:88px;height:31px'/>
