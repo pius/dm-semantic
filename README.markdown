@@ -1,39 +1,29 @@
-DM-Semantic Release 0.0.1 (July 13th 2008) 
+DM-Semantic Release 0.0.2 (January 8th 2009) 
 ===================================
 
 **Git**:  [http://github.com/pius/dm-semantic](http://github.com/pius/dm-semantic)   
 **Author**:    Pius Uzamere, The Uyiosa Corporation
 
-**Copyright**: 2008
+**Copyright**: 2009
 
 
 SYNOPSIS
 --------
 
-DM-Semantic is a plugin for DataMapper that will allow you to seamlessly export your data models as OWL ontologies 
-and expose your data as RDF.
+DM-Semantic is a plugin for DataMapper that will allow you to seamlessly export your data models as OWL ontologies and expose your data as RDF.
 
 
 FEATURE LIST
 ------------
                                                                               
-1. **Data Model Export as OWL Ontology**: You've already done the hard work coming up with your schema.  Now 
-you can make it even more useful by enabling OWL-aware clients to process it as a formally specified ontology.
-DataMapper is a great host for this capability because, rather than introspecting for the model fields, it not 
-only requires the developer to explicitly state the properties, but allows for rich specification of these 
-properties including cardinality and complex datatypes.  These features map nicely to the expressiveness of OWL.
-
-2. **Data Export as RDF**: You've got a ton of data in your database.  Let your data do more for you by exporting 
-it as RDF so that Semantic Web clients can mash it up with other data sources.
+1. **Import and Export RDF Data Directly From Your Models**: DM-Semantic adds a special DataMapper Type called RDFGraph.  You can add properties with this type to your DataMapper models and transparently load and dump RDF triples to your models (in Ntriples form.)  Let your data do more for you by manipulating it as RDF so that you can mash it up with other data sources and inference across the data.
 
 USAGE
 -----
 
-First of all, it's worth noting that this library isn't ready to use.  If you insist on using it, then you'll need to do the following:
-
 1. **Install the Gem**
 
-Make sure you've upgraded to RubyGems 1.2.  Then, if you've never installed a gem from GitHub before then do this:
+Make sure you've upgraded to at least RubyGems 1.2.  Then, if you've never installed a gem from GitHub before then do this:
 
   > gem sources -a http://gems.github.com (you only have to do this once)
 
@@ -43,15 +33,38 @@ Then:
 
 2. **Make Sure You've Got the Dependencies installed**
 
-DM-Semantic depends on Rena (http://github.com/tommorris/rena).  For now, it depends on my version.
+DM-Semantic depends on Reddy (http://github.com/tommorris/reddy).
 
-  > sudo gem install pius-rena
+  > sudo gem install reddy
 
 3. **Require the gem and include it in your DataMapper models**
 
-After requiring the gem, put this in the DataMapper models you'd like to semantify:
+To use the special RDFGraph type, create a property with the type in your model.  For example:
 
-  > include DataMapper::Semantic
+  > property :graph, RDFGraph
+  
+4.  Now, you can use RDF in your model.  For example:
+
+>> c = Concept.new(:slug => "pius", :graph => "<http://pius.github.com#me> <http://xmlns.com/foaf/0.1/name> \"Pius Uzamere\" . 
+<http://pius.github.com#me> <http://xmlns.com/foaf/0.1/homepage> \"Pius Uzamere\" .")
+=> #<Concept id=nil slug="pius" graph="<http://pius.github.com#me> <http://xmlns.com/foaf/0.1/name> \"Pius Uzamere\" . \n<http://pius.github.com#me> <http://xmlns.com/foaf/0.1/homepage> \"Pius Uzamere\" .">
+>> c.save
+ ~ (0.000087) SELECT "id", "slug" FROM "concepts" WHERE ("slug" = 'pius') ORDER BY "id", "slug" LIMIT 1
+ ~ (0.002364) INSERT INTO "concepts" ("graph", "slug") VALUES ('<http://pius.github.com#me> <http://xmlns.com/foaf/0.1/name> "Pius Uzamere" . 
+<http://pius.github.com#me> <http://xmlns.com/foaf/0.1/homepage> "Pius Uzamere" .', 'pius')
+=> true
+>> exit
+
+Then, later:
+
+>> c = Concept.first
+ ~ (0.000086) SELECT "id", "slug" FROM "concepts" ORDER BY "id", "slug" LIMIT 1
+=> #<Concept id=4 slug="pius" graph=<not loaded>>
+>> c.graph
+ ~ (0.000084) SELECT "graph", "id", "slug" FROM "concepts" WHERE ("id" = 4) AND ("slug" = 'pius') ORDER BY "id", "slug"
+=> #<Reddy::Graph:0x2742a3c @nsbinding={}, @triples=[[#<Reddy::URIRef:0x274262c @uri=#<Addressable::URI:0x13a0d1c URI:http://pius.github.com#me>, #<Reddy::URIRef:0x27415b0 @uri=#<Addressable::URI:0x13a03da URI:http://xmlns.com/foaf/0.1/name>, #<Reddy::Literal:0x27404f8 @encoding=<theReddy::TypeLiteral::Encoding::Null>, contents"Pius Uzamere"], [#<Reddy::URIRef:0x2742690 @uri=#<Addressable::URI:0x13a0024 URI:http://pius.github.com#me>, #<Reddy::URIRef:0x273fc10 @uri=#<Addressable::URI:0x139fc5a URI:http://xmlns.com/foaf/0.1/homepage>, #<Reddy::Literal:0x273f670 @encoding=<theReddy::TypeLiteral::Encoding::Null>, contents"Pius Uzamere"]]
+>> 
+
 
 4. **Read the documentation**
 

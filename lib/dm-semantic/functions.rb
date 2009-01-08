@@ -1,6 +1,23 @@
 module DataMapper
   module Semantic
       module ClassMethods
+        
+        # property :id,                         Serial
+        # property :login,                      String,   :nullable => false, :length => 3..40, :unique => true
+        # property :email,                      String,   :nullable => false, :unique => true
+        # property :created_at,                 DateTime
+        # property :updated_at,                 DateTime
+        # property :activated_at,               DateTime
+        # property :activation_code,            String
+        # property :crypted_password,           String
+        # property :salt,                       String
+        # property :remember_token_expires_at,  DateTime
+        # property :remember_token,             String
+        # property :password_reset_key,         String, :writer => :protected
+        
+        # Triple.new(:User, is_a, FOAF:Person)
+        # Triple.new(:id, rdf:datatype, :integer)
+        # Triple.new(:login, rdf:datatype, :string)
 
         ## 
         # Returns a hash of the ontologies to which the model is mapped, along with their authoritative URIs.
