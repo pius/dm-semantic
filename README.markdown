@@ -37,28 +37,19 @@ DM-Semantic depends on Reddy (http://github.com/tommorris/reddy).
 
   > sudo gem install reddy
 
-3. **Require the gem and include it in your DataMapper models**
+3. **Require the gem**
+  
+4.  Now, you can use RDF in your model.  See specs for examples.
 
 To use the special RDFGraph type, create a property with the type in your model.  For example:
 
   > property :graph, RDFGraph
   
-4.  Now, you can use RDF in your model.  See specs for examples.
-
-Then, later:
-
-  >> c = Concept.first
-  ~ (0.000086) SELECT "id", "slug" FROM "concepts" ORDER BY "id", "slug" LIMIT 1
-  => #<Concept id=4 slug="pius" graph=<not loaded>>
-  >> c.graph
-  ~ (0.000084) SELECT "graph", "id", "slug" FROM "concepts" WHERE ("id" = 4) AND ("slug" = 'pius') ORDER BY "id", "slug"
-  => #<Reddy::Graph:0x2742a3c @nsbinding={}, @triples=[[#<Reddy::URIRef:0x274262c @uri=#<Addressable::URI:0x13a0d1c URI:http://pius.github.com#me>, #<Reddy::URIRef:0x27415b0 @uri=#<Addressable::URI:0x13a03da URI:http://xmlns.com/foaf/0.1/name>, #<Reddy::Literal:0x27404f8 @encoding=<theReddy::TypeLiteral::Encoding::Null>, contents"Pius Uzamere"], [#<Reddy::URIRef:0x2742690 @uri=#<Addressable::URI:0x13a0024 URI:http://pius.github.com#me>, #<Reddy::URIRef:0x273fc10 @uri=#<Addressable::URI:0x139fc5a URI:http://xmlns.com/foaf/0.1/homepage>, #<Reddy::Literal:0x273f670 @encoding=<theReddy::TypeLiteral::Encoding::Null>, contents"Pius Uzamere"]]
-  
-4. **Read the documentation**
+5. **Read the documentation**
 
 It's YARD.  It's sexy.
 
-5. **Contribute!**
+6. **Contribute!**
 
 Fork my repository (http://github.com/pius/dm-semantic), make some changes, and send along a pull request!
                                                                               
