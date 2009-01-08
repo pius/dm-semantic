@@ -46,15 +46,15 @@ To use the special RDFGraph type, create a property with the type in your model.
 4.  Now, you can use RDF in your model.  For example:
 
 
-  c = Concept.new(:slug => "pius", :graph => "<http://pius.github.com#me> <http://xmlns.com/foaf/0.1/name> \"Pius Uzamere\" . 
-  <http://pius.github.com#me> <http://xmlns.com/foaf/0.1/homepage> \"Pius Uzamere\" .")
-  => #<Concept id=nil slug="pius" graph="<http://pius.github.com#me> <http://xmlns.com/foaf/0.1/name> \"Pius Uzamere\" . \n<http://pius.github.com#me> <http://xmlns.com/foaf/0.1/homepage> \"Pius Uzamere\" .">
-    >> c.save
-    ~ (0.000087) SELECT "id", "slug" FROM "concepts" WHERE ("slug" = 'pius') ORDER BY "id", "slug" LIMIT 1
-    ~ (0.002364) INSERT INTO "concepts" ("graph", "slug") VALUES ('<http://pius.github.com#me> <http://xmlns.com/foaf/0.1/name> "Pius Uzamere" . 
+      c = Concept.new(:slug => "pius", :graph => "<http://pius.github.com#me> <http://xmlns.com/foaf/0.1/name> \"Pius Uzamere\" . 
+      <http://pius.github.com#me> <http://xmlns.com/foaf/0.1/homepage> \"Pius Uzamere\" .")
+      #<Concept id=nil slug="pius" graph="<http://pius.github.com#me> <http://xmlns.com/foaf/0.1/name> \"Pius Uzamere\" . \n<http://pius.github.com#me> <http://xmlns.com/foaf/0.1/homepage> \"Pius Uzamere\" .">
+      >> c.save
+      ~ (0.000087) SELECT "id", "slug" FROM "concepts" WHERE ("slug" = 'pius') ORDER BY "id", "slug" LIMIT 1
+      ~ (0.002364) INSERT INTO "concepts" ("graph", "slug") VALUES ('<http://pius.github.com#me> <http://xmlns.com/foaf/0.1/name> "Pius Uzamere" . 
     <http://pius.github.com#me> <http://xmlns.com/foaf/0.1/homepage> "Pius Uzamere" .', 'pius')
-    => true
-    >> exit
+      => true
+      >> exit
 
 Then, later:
 
