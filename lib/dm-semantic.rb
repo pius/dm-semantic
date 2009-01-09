@@ -7,6 +7,9 @@ require 'dm-core'
 gem 'reddy'
 require 'reddy'
 
+gem 'curies'
+require 'curies'
+
 class Pathname
   def /(path)
     (self + path).expand_path
@@ -22,5 +25,6 @@ module DataMapper
   module Types
     dir = (Pathname(__FILE__).dirname.expand_path / 'dm-semantic/types' ).to_s
     autoload :RDFGraph, dir / 'rdf_graph'
+    autoload :Curie, dir / 'curie'
   end
 end

@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = "dm-semantic"
-  s.version = "0.0.2"
+  s.version = "0.0.3"
   s.date = "2009-01-08"
   s.summary = "DM-Semantic is a DataMapper plugin for adding semantic capabilities to models."
   s.email = "pius+github@alum.mit.edu"
@@ -14,4 +14,5 @@ Gem::Specification.new do |s|
   #s.extra_rdoc_files = ["History.txt", "Manifest.txt", "README.txt"]
   s.add_dependency("dm-types", ["> 0.9.6"])
   s.add_dependency("reddy", ["> 0.0.1"])
+  s.add_dependency("curies", ["> 0.0.1"])
 end
