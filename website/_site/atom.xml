@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ 
+ <title>DM-Semantic</title>
+ <link href="http://pius.github.com/dm-semantic/atom.xml" rel="self"/>
+ <link href="http://pius.github.com/dm-semantic/"/>
+ <updated>2009-01-09T13:11:24-05:00</updated>
+ <id>http://pius.github.com/dm-semantic/</id>
+ <author>
+   <name>Dr Nic Williams</name>
+   <email>piuswilliams@gmail.com</email>
+ </author>
+
+ 
+ <entry>
+   <title>Welcome to 'DM-Semantic'</title>
+   <link href="http://pius.github.com/dm-semantic/2009/01/09/first-post.html"/>
+   <updated>2009-01-09T00:00:00-05:00</updated>
+   <id>http://pius.github.com/dm-semantic/2009/01/09/first-post</id>
+   <content type="html">&lt;p&gt;DM-Semantic is going to be an awesome project.&lt;/p&gt;</content>
+ </entry>
+ 
+ 
+</feed>
