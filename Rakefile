@@ -3,6 +3,7 @@ require 'spec'
 require 'rake/clean'
 require 'spec/rake/spectask'
 require 'pathname'
+require 'grancher/task'
 
 task :default => [ :spec ]
 
@@ -19,4 +20,11 @@ Spec::Rake::SpecTask.new(:spec) do |t|
   rescue Exception
     # rcov not installed
   end
+end
+
+Grancher::Task.new do |g|
+  g.branch = 'gh-pages'
+  g.push_to = 'origin' # automatically push too
+  
+  g.directory 'website'
 end
